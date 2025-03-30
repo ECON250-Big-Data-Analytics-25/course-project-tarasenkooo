@@ -1,0 +1,25 @@
+
+version: 2
+
+models:
+  - name: stg_assignment3_uk_wiki
+    description: "a staging model that combines data from both sources"
+    columns:
+      - name: src
+        description: "source of data: based on input table, or mobile"
+        data_tests:
+          - not_null:
+             config:
+                severity: error
+                error_if: ">10"
+                warn_if: ">0"
+          - accepted_values:
+              values: ['desktop', 'mobile']
+
+  - name: int_assignment3_uk_wiki
+    description: "extended the staging model and added 'flags' which will specify whether the column value is one of such meta pages"
+  
+
+  - name: fct_assignment3_top200
+    description: "List of the top-200 articles by views and sorted by mobile views ascending"
+ 
