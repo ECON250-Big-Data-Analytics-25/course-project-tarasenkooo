@@ -12,6 +12,7 @@ sources:
     database: econ250-2025  
     schema: test_dataset  
     tables:
+      - name: international_top_terms
       - name: air_raid_alerts_ua
         loaded_at_field: started_at
         freshness:
