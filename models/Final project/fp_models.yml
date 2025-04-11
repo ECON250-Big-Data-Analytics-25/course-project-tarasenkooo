@@ -1,0 +1,101 @@
+version: 2
+
+models:
+  - name: stg_fp_customers
+    description: "information about the customer and its location"
+    columns:
+      - name: customer_id
+        description: "Each order has a unique customer_id"
+        data_tests:
+        - not_null
+        - unique
+      - name: customer_unique_id
+        description: "Unique identifier of a customer."
+        data_tests:
+        - not_null
+
+  - name: stg_fp_order_items
+    description: "data about the items purchased within each order"
+    columns:
+      - name: order_id
+        description: "order unique identifier"
+        data_tests:
+        - not_null
+      - name: order_item_id
+        description: "sequential number identifying number of items included in the same order."
+        data_tests:
+        - not_null
+      - name: product_id
+        description: "product unique identifier"
+        data_tests:
+        - not_null
+      - name: seller_id
+        description: "seller unique identifier"
+        data_tests:
+        - not_null
+
+  - name: stg_fp_order_payments
+    description: This dataset includes data about the orders payment options.
+    columns:
+        - name: order_id
+          description: order unique identifier
+          data_tests:
+          - not_null
+        - name: payment_sequential
+          description: a customer may pay an order with more than one payment method. 
+          data_tests:
+          - not_null
+
+  - name: stg_fp_orders
+    description: This is the core dataset. From each order you might find all other information.
+    columns:
+        - name: order_id
+          description: order unique identifier
+          data_tests:
+          - not_null
+          - unique
+        - name: customer_id
+          description: key to the orders dataset. Each order has a unique customer_id.
+          data_tests:
+          - not_null
+          - unique
+        - name: is_delivered
+          description: determine which orders have already been delivered
+          data_tests:
+          - accepted_values:
+              values: [true, false]
+        - name: days_to_deliver
+          description: How many days passed from the moment of purchase to delivery
+        - name: days_to_approve
+          description: Time from purchase to payment confirmation 
+        - name: delivery_delay
+          description: How much does the actual delivery differ from the expected
+
+  - name: stg_fp_products
+    description: data about the products sold by Olist
+    columns:
+        - name: product_id
+          description: unique product identifier
+          data_tests:
+          - not_null
+          - unique
+
+  - name: stg_fp_sellers
+    description: data about the sellers that fulfilled orders made at Olist
+    columns:
+        - name: seller_id
+          description: seller unique identifier
+          data_tests:
+          - not_null
+          - unique
+
+  - name: stg_fp_category_name_translation
+    description: Translates the product_category_name to english.
+    columns:
+        - name: product_category_name
+          description: category name in Portuguese
+          data_tests:
+          - not_null
+          - unique
+
+

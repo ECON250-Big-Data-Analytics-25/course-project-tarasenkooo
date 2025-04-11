@@ -1,3 +1,10 @@
+
+Link to my PDF with explanation of my actions
+
+https://drive.google.com/file/d/1gogiEYb46jVAmo0R5uZiHWR0fXzIh1ZD/view?usp=sharing
+
+
+
 Welcome to your new dbt project!
 
 # Installation
